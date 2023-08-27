@@ -3,7 +3,9 @@ from rest_framework.views import APIView
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm,AuthenticationForm
 from django.contrib.auth.models import User
 from rest_framework.response import Response
-
+from .forms import RegistrationForm
+from django.contrib.auth.views import LoginView
+from .forms import CustomAuthenticationForm
 
 
 # Create your views here.
@@ -12,28 +14,12 @@ def index(request):
     return render(request,'index.html')
 
 
-class LoginView(APIView):
-    form = AuthenticationForm
-    
-    def get(self,request):
-        context = {
-            'form':self.form
-        }
-        return render(request,'login.html',context)
-
-    def post(self,request):
-        form = self.form(request)
-        if form.is_valid():
-            user = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            return Response('Authenticated')
-        else:
-            return Response('Authentication Error')
-        
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
 
 
 class SignUpView(APIView):
-    form = UserCreationForm
+    form = RegistrationForm
 
     def get(self,request):
         context = {
@@ -41,4 +27,9 @@ class SignUpView(APIView):
         }
         return render(request,'signup.html',context) 
     
+
+    def post(self,request):
+        form = self.form(RegistrationForm)
+        if form.is_valid():
+            User.
 

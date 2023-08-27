@@ -40,11 +40,28 @@ INSTALLED_APPS = [
     'app',
     'rest_framework',
     'crispy_forms',
+    'allauth',
+    'allauth.account',
 
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+
+# allauth settings 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For development, use console backend
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Allow authentication using email
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Default authentication backend
+    'allauth.account.auth_backends.AuthenticationBackend',  # Allauth authentication backend
+]
+
+if not DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # For development, use smtp backend
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
