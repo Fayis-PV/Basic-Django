@@ -6,8 +6,8 @@ from rest_framework.response import Response
 from .forms import RegistrationForm
 # from django.contrib.auth.views import LoginView 
 from .forms import CustomAuthenticationForm
-from allauth.account.views import SignupView,LoginView
-from django.urls import reverse
+from allauth.account.views import SignupView,LoginView,LogoutView
+from django.urls import reverse_lazy,reverse
 
 # Create your views here.
 
@@ -18,18 +18,11 @@ def index(request):
 class CustomAllAuthLoginView(LoginView):
     form_class = CustomAuthenticationForm
     template_name = 'account/login.html'
-    def get(self,request):
+
+    def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return redirect('app:home')
-        context ={
-            'form':self.form_class
-        }
-        return render(request,'account/login.html',context)
-    
-    def form_valid(self, form):
-        if self.request.user.is_authenticated:
-            return redirect('app:home')
-        return super().form_valid(form)
+            return redirect(reverse_lazy('home'))  # Redirect to home page if user is authenticated
+        return super().get(request, *args, **kwargs)
 
 
 class CustomSignUpView(SignupView):
@@ -44,5 +37,3 @@ class CustomSignUpView(SignupView):
     def get_success_url(self):
         return reverse("account_login")  # Redirect to the login page
         
- 
-
