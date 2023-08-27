@@ -17,8 +17,19 @@ def index(request):
 
 class CustomAllAuthLoginView(LoginView):
     form_class = CustomAuthenticationForm
+    template_name = 'account/login.html'
     def get(self,request):
-        return render(request,'account/login.html')
+        if self.request.user.is_authenticated:
+            return redirect('app:home')
+        context ={
+            'form':self.form_class
+        }
+        return render(request,'account/login.html',context)
+    
+    def form_valid(self, form):
+        if self.request.user.is_authenticated:
+            return redirect('app:home')
+        return super().form_valid(form)
 
 
 class CustomSignUpView(SignupView):

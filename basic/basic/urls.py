@@ -21,9 +21,7 @@ from app.views import CustomSignUpView,CustomAllAuthLoginView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app.urls')),
-    path('accounts/signup',CustomSignUpView.as_view(),name='account_signup'),
-    # path('accounts/login/', CustomAllAuthLoginView.as_view(), name='account_login'),
-    path('accounts/',include('allauth.urls'))
-
+    path('accounts/signup/',CustomSignUpView.as_view(),name='account_signup'),
+    path('accounts/login/', CustomAllAuthLoginView.as_view(), name='account_login'),
 
 ]

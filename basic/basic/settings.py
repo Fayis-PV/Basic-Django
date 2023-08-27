@@ -51,8 +51,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # allauth settings 
+ACCOUNT_LOGIN_REDIRECT = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For development, use console backend
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Allow authentication using email
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True

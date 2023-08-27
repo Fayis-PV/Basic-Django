@@ -5,7 +5,6 @@
 <form action="{% url 'account_signup' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    Hi
     <input type="submit" value="Sign Up Here">
 </form>
 {% endblock content %}

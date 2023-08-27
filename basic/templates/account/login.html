@@ -4,6 +4,7 @@
 {% block content %}
 <form method="post" action="{% url 'account_login' %}">
     {% csrf_token %}
-    {% crispy form %}
+    {{ form.as_p }}
+    <input type="submit" value="Login">
  </form>
 {% endblock content %}

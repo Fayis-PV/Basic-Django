@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<a href="{% url '/accounts/login' %}">Login Here</a><br>
+{% if request.user.is_authenticated %}
+  {{request.user}}
+{% endif %}
+<a href="{% url 'account_login' %}">Login Here</a><br>
 <a href="{% url 'account_signup' %}">Sign Up Here</a><br>
 {% endblock content %}
 
