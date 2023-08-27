@@ -40,13 +40,15 @@ INSTALLED_APPS = [
     'app',
     'rest_framework',
     'crispy_forms',
+    "crispy_bootstrap5",
     'allauth',
     'allauth.account',
 
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # allauth settings 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For development, use console backend

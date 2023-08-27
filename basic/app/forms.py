@@ -14,12 +14,15 @@ class RegistrationForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super(RegistrationForm,self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.add_input(Submit('submit', 'Register'))
-
+ 
 
 class CustomAuthenticationForm(LoginForm):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super(CustomAuthenticationForm,self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
         self.fields['login'].widget.attrs['placeholder'] = 'Username or Email'
+        self.fields['login'].label = 'Username or Email'
+

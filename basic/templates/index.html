@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<a href="{% url 'app:login' %}">Login Here</a><br>
-<a href="{% url 'app:signup' %}">Sign Up Here</a><br>
+<a href="{% url '/accounts/login' %}">Login Here</a><br>
+<a href="{% url 'account_signup' %}">Sign Up Here</a><br>
 {% endblock content %}
 
