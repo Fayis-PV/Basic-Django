@@ -1,12 +1,7 @@
 from django.shortcuts import render,redirect
-from rest_framework.views import APIView
-from django.contrib.auth.forms import UserCreationForm,UserChangeForm,AuthenticationForm
-from django.contrib.auth.models import User
-from rest_framework.response import Response
 from .forms import RegistrationForm
-# from django.contrib.auth.views import LoginView 
-from .forms import CustomAuthenticationForm
-from allauth.account.views import SignupView,LoginView,LogoutView
+from allauth.account.views import SignupView,LoginView
+from allauth.account.forms import LoginForm
 from django.urls import reverse_lazy,reverse
 
 # Create your views here.
@@ -16,7 +11,7 @@ def index(request):
 
 
 class CustomAllAuthLoginView(LoginView):
-    form_class = CustomAuthenticationForm
+    form_class = LoginForm
     template_name = 'account/login.html'
 
     def get(self, request, *args, **kwargs):
